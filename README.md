@@ -43,7 +43,6 @@ TO simulate sensor and also avoid running mocking server to simple running APP
 ## Usage
 
 ## NOTES
-*cons
 we use layered architecture instead of clean & Hexagonal Architecture so the domain is not isolated from other dependancy
 we communicate with a sensor  in a synchrony way or even reactive
 didn't use Resilienc4j lib to achive Circuit breaker, Retry ,Rate limiter ,Bulkhead ,Time Limiter
