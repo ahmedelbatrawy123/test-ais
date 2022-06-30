@@ -48,3 +48,5 @@ TO simulate sensor and also avoid running mocking server to simple running APP
 * Didn't use Resilienc4j lib to achive Circuit breaker, Retry ,Rate limiter ,Bulkhead ,Time Limiter
 * missing some validation
 * Didn't use discovery server to allocate sensor service make it static
+* Didn't write test most of test are integration test 
+
