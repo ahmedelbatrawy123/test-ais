@@ -4,6 +4,7 @@ import com.batrawy.ais.dto.request.IrrigateInfoDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class SensorServiceImpl implements SensorService {
 
 
+    public static final String SCENSOR_MOCK_URL = "http://localhost:8099/mock/irrigate";
     private RestTemplate restTemplate;
     private PlotStatusService plotStatusService;
 
@@ -24,11 +26,12 @@ public class SensorServiceImpl implements SensorService {
     public void callSensor(IrrigateInfoDto irrigateInfoDto) {
 
 
-        String status = restTemplate.getForObject("http://localhost:8099/mock/irrigate",
+        ResponseEntity<String> status = restTemplate.postForEntity(SCENSOR_MOCK_URL,irrigateInfoDto,
                 String.class);
-        if ("success".equalsIgnoreCase(status)) {
-    //update plot status
+        if ("success".equalsIgnoreCase(String.valueOf(status))) {
             plotStatusService.updatePlotStatus(irrigateInfoDto.getPoltId());
+        }else{
+            log.warn("SENSOR Failed to irrigate");
         }
 
     }
