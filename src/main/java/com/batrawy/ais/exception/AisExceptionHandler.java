@@ -26,6 +26,14 @@ public class AisExceptionHandler {
         return new ResponseEntity<>(payload, httpStatus);
     }
 
+    @ExceptionHandler(value = {InvalidCoordinatesException.class})
+    public ResponseEntity<Object> handleResourceNotFoundException(InvalidCoordinatesException e) {
+        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        ExceptionPayload payload =
+                new ExceptionPayload(e.getMessage(), httpStatus);
+        return new ResponseEntity<>(payload, httpStatus);
+    }
+
     @ExceptionHandler(value = {ParseException.class})
     public ResponseEntity<Object> handleParseException(ParseException e) {
         HttpStatus httpStatus = HttpStatus.NOT_ACCEPTABLE;

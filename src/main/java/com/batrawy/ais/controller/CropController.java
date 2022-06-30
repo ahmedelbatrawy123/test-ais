@@ -22,7 +22,7 @@ public class CropController {
 
     private final CropService cropService;
 
-    @ApiOperation(value = "Assign Coordinates to a plot, removes existent before coordinates.")
+    @ApiOperation(value = "create a crop .")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created")})
     @PostMapping("")

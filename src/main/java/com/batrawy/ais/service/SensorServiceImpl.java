@@ -28,7 +28,7 @@ public class SensorServiceImpl implements SensorService {
 
         ResponseEntity<String> status = restTemplate.postForEntity(SCENSOR_MOCK_URL,irrigateInfoDto,
                 String.class);
-        if ("success".equalsIgnoreCase(String.valueOf(status))) {
+        if ("success".equalsIgnoreCase(status.getBody())) {
             plotStatusService.updatePlotStatus(irrigateInfoDto.getPoltId());
         }else{
             log.warn("SENSOR Failed to irrigate");
